@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>LƯU TRỮ TÀI LIỆU & TRA CỨU</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,6 +16,7 @@
     body {
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
     }
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 4px; }
@@ -23,7 +24,10 @@
     ::-webkit-scrollbar-thumb:hover { background: #64748b; }
 
     /* Thanh kéo ngang & dọc nổi bật trong khung Xem Tài Liệu Gốc */
-    #viewerScrollContainer::-webkit-scrollbar { width: 14px; height: 14px; }
+    #viewerScrollContainer::-webkit-scrollbar { width: 10px; height: 10px; }
+    @media (min-width: 640px) {
+      #viewerScrollContainer::-webkit-scrollbar { width: 14px; height: 14px; }
+    }
     #viewerScrollContainer::-webkit-scrollbar-track { background: #0f172a; }
     #viewerScrollContainer::-webkit-scrollbar-thumb {
       background: #64748b;
@@ -63,12 +67,12 @@
       width: max-content;
       min-width: 100%;
       margin: 10px 0;
-      font-size: 13.5px;
+      font-size: 13px;
       background: #fff;
     }
     .orig-doc-view th, .orig-doc-view td {
       border: 1px solid #cbd5e1;
-      padding: 8px 12px;
+      padding: 7px 10px;
       text-align: left;
       line-height: 1.5;
       white-space: nowrap;
@@ -116,18 +120,18 @@
       <form id="loginForm" onsubmit="window.handleLoginSubmit(event)" class="space-y-4">
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">Tên đăng nhập</label>
-          <input type="text" id="loginUsername" required autocomplete="username" placeholder="Nhập username..." class="w-full border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-100 transition">
+          <input type="text" id="loginUsername" required autocomplete="username" placeholder="Nhập username..." class="w-full border border-slate-300 rounded-lg px-3.5 py-2.5 text-base sm:text-sm text-slate-900 focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-100 transition">
         </div>
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">Mật khẩu</label>
-          <input type="password" id="loginPassword" required autocomplete="current-password" placeholder="Nhập mật khẩu..." class="w-full border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-100 transition">
+          <input type="password" id="loginPassword" required autocomplete="current-password" placeholder="Nhập mật khẩu..." class="w-full border border-slate-300 rounded-lg px-3.5 py-2.5 text-base sm:text-sm text-slate-900 focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-100 transition">
         </div>
 
         <div id="loginErrorBox" class="hidden text-xs font-semibold text-red-600 bg-red-50 border border-red-200 px-3 py-2 rounded-lg text-center">
           Tên đăng nhập hoặc mật khẩu không đúng!
         </div>
 
-        <button type="submit" class="w-full h-10 rounded-lg bg-sky-600 hover:bg-sky-700 active:bg-sky-800 text-white font-bold text-sm shadow-sm transition cursor-pointer">
+        <button type="submit" class="w-full h-11 sm:h-10 rounded-lg bg-sky-600 hover:bg-sky-700 active:bg-sky-800 text-white font-bold text-sm shadow-sm transition cursor-pointer">
           Đăng nhập
         </button>
       </form>
@@ -136,30 +140,31 @@
 
   <!-- HEADER CHÍNH -->
   <header class="bg-slate-900 text-white border-b border-slate-800 sticky top-0 z-30 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex justify-between items-center gap-4">
-      <div class="flex items-center gap-3">
-        <div class="w-9 h-9 rounded-lg bg-sky-600 flex items-center justify-center shadow-inner">
-          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2.5 sm:py-0 sm:h-16 flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center gap-2 sm:gap-3 min-w-0">
+        <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-sky-600 flex items-center justify-center shadow-inner shrink-0">
+          <svg class="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
           </svg>
         </div>
-        <h1 class="text-lg sm:text-xl font-extrabold tracking-tight text-white">LƯU TRỮ TÀI LIỆU & TRA CỨU</h1>
+        <h1 class="text-sm sm:text-xl font-extrabold tracking-tight text-white truncate">LƯU TRỮ TÀI LIỆU & TRA CỨU</h1>
       </div>
 
-      <div class="flex items-center gap-2.5">
-        <span id="statusBadge" class="hidden sm:inline-flex items-center text-xs bg-slate-800 text-slate-300 px-3 py-1.5 rounded-full font-medium border border-slate-700">
+      <div class="flex items-center gap-1.5 sm:gap-2.5 flex-wrap justify-end ml-auto">
+        <span id="statusBadge" class="hidden md:inline-flex items-center text-xs bg-slate-800 text-slate-300 px-3 py-1.5 rounded-full font-medium border border-slate-700">
           Đang đồng bộ...
         </span>
-        <span id="userRoleBadge" class="inline-flex items-center text-xs bg-slate-800 text-amber-300 px-3 py-1.5 rounded-full font-bold border border-slate-700">
+        <span id="userRoleBadge" class="inline-flex items-center text-[11px] sm:text-xs bg-slate-800 text-amber-300 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full font-bold border border-slate-700">
           👤 User
         </span>
-        <button type="button" id="reloadBtn" class="h-9 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold transition flex items-center gap-1.5 cursor-pointer" title="Làm mới dữ liệu">
+        <button type="button" id="reloadBtn" class="h-8 sm:h-9 px-2.5 sm:px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-[11px] sm:text-xs font-semibold transition flex items-center gap-1 cursor-pointer" title="Làm mới dữ liệu">
           <span>Làm mới</span>
         </button>
-        <button type="button" id="headerUploadBtn" onclick="window.openUploadModal()" class="h-9 px-4 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs sm:text-sm shadow-sm transition flex items-center gap-1.5 cursor-pointer">
-          <span>+ Đăng tải tài liệu</span>
+        <button type="button" id="headerUploadBtn" onclick="window.openUploadModal()" class="h-8 sm:h-9 px-2.5 sm:px-4 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-bold text-[11px] sm:text-sm shadow-sm transition flex items-center gap-1 cursor-pointer">
+          <span>+ Đăng tải</span>
+          <span class="hidden sm:inline">tài liệu</span>
         </button>
-        <button type="button" onclick="window.handleLogout()" class="h-9 px-3 rounded-lg bg-slate-800 hover:bg-red-600 text-slate-300 hover:text-white border border-slate-700 hover:border-red-500 text-xs font-semibold transition flex items-center gap-1 cursor-pointer" title="Đăng xuất tài khoản">
+        <button type="button" onclick="window.handleLogout()" class="h-8 sm:h-9 px-2.5 sm:px-3 rounded-lg bg-slate-800 hover:bg-red-600 text-slate-300 hover:text-white border border-slate-700 hover:border-red-500 text-[11px] sm:text-xs font-semibold transition flex items-center gap-1 cursor-pointer" title="Đăng xuất tài khoản">
           <span>Đăng xuất</span>
         </button>
       </div>
@@ -167,54 +172,61 @@
   </header>
 
   <!-- BỐ CỤC CHÍNH -->
-  <main class="max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1">
+  <main class="max-w-7xl w-full mx-auto px-3 sm:px-6 py-4 sm:py-6 grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 flex-1">
     
     <!-- CỘT TRÁI: DANH MỤC THƯ MỤC & TÀI LIỆU -->
-    <aside class="lg:col-span-4 bg-white rounded-xl shadow-sm border border-slate-200/90 flex flex-col h-[calc(100vh-112px)] sticky top-22 overflow-hidden">
-      <div class="px-4 py-3.5 bg-slate-50/80 border-b border-slate-200 flex justify-between items-center">
-        <div class="flex items-center gap-2">
-          <h2 class="font-bold text-xs text-slate-700 uppercase tracking-wider">Danh mục thư mục</h2>
-          <span id="totalDocsCountBadge" class="text-[11px] font-bold bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full">0</span>
+    <aside class="lg:col-span-4 bg-white rounded-xl shadow-sm border border-slate-200/90 flex flex-col lg:h-[calc(100vh-112px)] lg:sticky lg:top-20 overflow-hidden order-2 lg:order-1">
+      <div class="px-3.5 sm:px-4 py-3 bg-slate-50/80 border-b border-slate-200 flex justify-between items-center gap-2">
+        <div class="flex items-center gap-2 min-w-0">
+          <h2 class="font-bold text-xs text-slate-700 uppercase tracking-wider truncate">Danh mục thư mục</h2>
+          <span id="totalDocsCountBadge" class="text-[11px] font-bold bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full shrink-0">0</span>
         </div>
-        <button type="button" id="btnCreateFolderMain" onclick="window.promptCreateFolder()" class="text-xs font-bold text-sky-700 hover:text-sky-800 bg-sky-50 hover:bg-sky-100 border border-sky-200 px-2.5 py-1 rounded-md transition cursor-pointer">
-          + Thư mục mới
-        </button>
+        <div class="flex items-center gap-1.5 shrink-0">
+          <button type="button" id="btnCreateFolderMain" onclick="window.promptCreateFolder()" class="text-xs font-bold text-sky-700 hover:text-sky-800 bg-sky-50 hover:bg-sky-100 border border-sky-200 px-2.5 py-1 rounded-md transition cursor-pointer">
+            + Thư mục mới
+          </button>
+          <button type="button" id="mobileToggleTreeBtn" onclick="window.toggleMobileFolderTree()" class="lg:hidden text-xs font-semibold text-slate-600 bg-slate-200/80 hover:bg-slate-300 px-2.5 py-1 rounded-md transition cursor-pointer">
+            Thu gọn ▲
+          </button>
+        </div>
       </div>
 
-      <div class="p-3 border-b border-slate-100 bg-white space-y-2.5">
-        <input type="text" id="treeFilterInput" placeholder="Lọc nhanh tên văn bản trong danh mục..." class="w-full border border-slate-200 rounded-lg px-3 py-1.5 text-xs text-slate-700 placeholder:italic placeholder:text-slate-400 focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-100 bg-slate-50/60 transition">
-        
-        <div class="flex justify-between items-center text-xs px-0.5">
-          <button type="button" onclick="window.selectFolder('ALL')" id="btnFolderAll" class="font-bold text-sky-700 hover:underline cursor-pointer">
-            Tất cả thư mục
-          </button>
-          <div class="flex items-center gap-2 text-slate-500">
-            <button type="button" onclick="window.expandAllFolders(true)" class="hover:text-slate-800 font-medium cursor-pointer">Mở rộng</button>
-            <span class="text-slate-300">|</span>
-            <button type="button" onclick="window.expandAllFolders(false)" class="hover:text-slate-800 font-medium cursor-pointer">Thu gọn</button>
+      <div id="mobileFolderTreeBody" class="flex flex-col flex-1 overflow-hidden">
+        <div class="p-3 border-b border-slate-100 bg-white space-y-2.5">
+          <input type="text" id="treeFilterInput" placeholder="Lọc nhanh tên văn bản trong danh mục..." class="w-full border border-slate-200 rounded-lg px-3 py-2 sm:py-1.5 text-base sm:text-xs text-slate-700 placeholder:italic placeholder:text-slate-400 focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-100 bg-slate-50/60 transition">
+          
+          <div class="flex justify-between items-center text-xs px-0.5">
+            <button type="button" onclick="window.selectFolder('ALL')" id="btnFolderAll" class="font-bold text-sky-700 hover:underline cursor-pointer py-0.5">
+              Tất cả thư mục
+            </button>
+            <div class="flex items-center gap-2 text-slate-500">
+              <button type="button" onclick="window.expandAllFolders(true)" class="hover:text-slate-800 font-medium cursor-pointer py-0.5">Mở rộng</button>
+              <span class="text-slate-300">|</span>
+              <button type="button" onclick="window.expandAllFolders(false)" class="hover:text-slate-800 font-medium cursor-pointer py-0.5">Thu gọn</button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div id="folderTreeContainer" class="flex-1 overflow-y-auto p-3 space-y-2 select-none">
-        <div class="text-xs text-slate-400 italic text-center py-10">Đang tải danh mục tài liệu...</div>
-      </div>
+        <div id="folderTreeContainer" class="flex-1 overflow-y-auto max-h-[52vh] lg:max-h-none p-2.5 sm:p-3 space-y-2 select-none">
+          <div class="text-xs text-slate-400 italic text-center py-10">Đang tải danh mục tài liệu...</div>
+        </div>
 
-      <div class="px-4 py-2.5 border-t border-slate-100 bg-slate-50 text-[11px] text-slate-500 italic flex justify-between items-center">
-        <span id="treeFooterHint">Kéo thả tên văn bản vào thư mục để di chuyển</span>
+        <div class="px-4 py-2 border-t border-slate-100 bg-slate-50 text-[11px] text-slate-500 italic flex justify-between items-center">
+          <span id="treeFooterHint">Kéo thả tên văn bản vào thư mục để di chuyển</span>
+        </div>
       </div>
     </aside>
 
     <!-- CỘT PHẢI: TRA CỨU NGHIỆP VỤ & KẾT QUẢ -->
-    <section class="lg:col-span-8 space-y-5">
-      <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200/90 space-y-4">
-        <div class="flex flex-wrap justify-between items-center gap-2 border-b border-slate-100 pb-3">
+    <section class="lg:col-span-8 space-y-4 sm:space-y-5 order-1 lg:order-2">
+      <div class="bg-white p-3.5 sm:p-5 rounded-xl shadow-sm border border-slate-200/90 space-y-3.5 sm:space-y-4">
+        <div class="flex flex-wrap justify-between items-start sm:items-center gap-2 border-b border-slate-100 pb-3">
           <div>
-            <h2 class="text-base font-extrabold text-slate-900 tracking-tight uppercase">TRA CỨU NGHIỆP VỤ</h2>
-            <p id="activeFolderHeading" class="text-xs text-slate-500 italic mt-0.5">Phạm vi tra cứu: Tất cả thư mục • Chọn tài liệu trong danh sách kết quả để mở thẳng trang khớp</p>
+            <h2 class="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight uppercase">TRA CỨU NGHIỆP VỤ</h2>
+            <p id="activeFolderHeading" class="text-[11px] sm:text-xs text-slate-500 italic mt-0.5">Phạm vi tra cứu: Tất cả thư mục • Chọn tài liệu trong danh sách kết quả để mở thẳng trang khớp</p>
           </div>
-          <div class="flex items-center gap-2">
-            <span id="resultCount" class="text-xs font-semibold text-slate-600 bg-slate-100 px-3 py-1 rounded-full">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span id="resultCount" class="text-[11px] sm:text-xs font-semibold text-slate-600 bg-slate-100 px-2.5 sm:px-3 py-1 rounded-full">
               Nhập từ khóa để tra cứu
             </span>
             <button type="button" onclick="window.clearSearchBox(0)" id="clearAllSearchBtn" class="hidden text-xs font-bold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 px-2.5 py-1 rounded-md transition cursor-pointer">
@@ -224,14 +236,14 @@
         </div>
 
         <!-- 2 Ô Tìm kiếm Từ khóa Chính xác 100% + Linh hoạt số -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5">
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1.5">
               Cụm từ khóa 1
             </label>
             <div class="relative">
-              <input type="text" id="searchInput1" placeholder="Nhập chính xác từ hoặc cụm từ thứ nhất..." class="w-full border border-slate-300 rounded-lg pl-3.5 pr-8 py-2 text-sm text-slate-800 placeholder:italic placeholder:text-slate-400 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100 transition">
-              <button type="button" onclick="window.clearSearchBox(1)" id="clearBtn1" class="hidden absolute right-2.5 top-2 text-slate-400 hover:text-slate-700 font-bold text-sm px-1 cursor-pointer">✕</button>
+              <input type="text" id="searchInput1" placeholder="Nhập chính xác từ hoặc cụm từ thứ nhất..." class="w-full border border-slate-300 rounded-lg pl-3.5 pr-8 py-2 text-base sm:text-sm text-slate-800 placeholder:italic placeholder:text-slate-400 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100 transition">
+              <button type="button" onclick="window.clearSearchBox(1)" id="clearBtn1" class="hidden absolute right-2.5 top-2.5 sm:top-2 text-slate-400 hover:text-slate-700 font-bold text-sm px-1 cursor-pointer">✕</button>
             </div>
           </div>
 
@@ -240,8 +252,8 @@
               Cụm từ khóa 2
             </label>
             <div class="relative">
-              <input type="text" id="searchInput2" placeholder="Nhập chính xác từ hoặc cụm từ thứ hai..." class="w-full border border-slate-300 rounded-lg pl-3.5 pr-8 py-2 text-sm text-slate-800 placeholder:italic placeholder:text-slate-400 focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100 transition">
-              <button type="button" onclick="window.clearSearchBox(2)" id="clearBtn2" class="hidden absolute right-2.5 top-2 text-slate-400 hover:text-slate-700 font-bold text-sm px-1 cursor-pointer">✕</button>
+              <input type="text" id="searchInput2" placeholder="Nhập chính xác từ hoặc cụm từ thứ hai..." class="w-full border border-slate-300 rounded-lg pl-3.5 pr-8 py-2 text-base sm:text-sm text-slate-800 placeholder:italic placeholder:text-slate-400 focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100 transition">
+              <button type="button" onclick="window.clearSearchBox(2)" id="clearBtn2" class="hidden absolute right-2.5 top-2.5 sm:top-2 text-slate-400 hover:text-slate-700 font-bold text-sm px-1 cursor-pointer">✕</button>
             </div>
           </div>
         </div>
@@ -255,33 +267,33 @@
   </main>
 
   <!-- MODAL 1: ĐĂNG TẢI TÀI LIỆU MỚI (CHỈ DÀNH CHO ADMIN) -->
-  <div id="uploadModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-[1px] hidden items-center justify-center p-4 z-40">
+  <div id="uploadModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-[1px] hidden items-center justify-center p-3 sm:p-4 z-40">
     <div class="bg-white rounded-xl max-w-xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
-      <div class="bg-slate-900 text-white px-5 py-3.5 flex justify-between items-center shrink-0">
-        <h3 class="font-bold text-base tracking-tight">Đăng tải Tài liệu mới lên Đám mây</h3>
+      <div class="bg-slate-900 text-white px-4 sm:px-5 py-3.5 flex justify-between items-center shrink-0">
+        <h3 class="font-bold text-sm sm:text-base tracking-tight">Đăng tải Tài liệu mới lên Đám mây</h3>
         <button type="button" onclick="window.closeUploadModal()" class="text-slate-400 hover:text-white text-2xl font-bold leading-none cursor-pointer">&times;</button>
       </div>
 
-      <div class="p-5 overflow-y-auto space-y-4 flex-1">
+      <div class="p-4 sm:p-5 overflow-y-auto space-y-4 flex-1">
         <div class="grid grid-cols-1 sm:grid-cols-12 gap-3.5">
           <div class="sm:col-span-7">
             <label class="block text-xs font-bold text-slate-700 mb-1">
               Tiêu đề tài liệu <span class="font-normal italic text-slate-400">(Không bắt buộc)</span>
             </label>
-            <input type="text" id="docTitle" placeholder="Để trống sẽ tự động lấy tên file..." class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm placeholder:italic focus:ring-2 focus:ring-sky-100 focus:border-sky-600 outline-none transition">
+            <input type="text" id="docTitle" placeholder="Để trống sẽ tự động lấy tên file..." class="w-full border border-slate-300 rounded-lg px-3 py-2 text-base sm:text-sm placeholder:italic focus:ring-2 focus:ring-sky-100 focus:border-sky-600 outline-none transition">
           </div>
           <div class="sm:col-span-5">
             <label class="block text-xs font-bold text-slate-700 mb-1">Thư mục lưu trữ *</label>
             <div class="flex gap-1.5">
-              <select id="docCategorySelect" class="flex-1 border border-slate-300 rounded-lg px-2.5 py-2 text-sm outline-none bg-white font-semibold text-slate-800 focus:border-sky-600"></select>
+              <select id="docCategorySelect" class="flex-1 border border-slate-300 rounded-lg px-2.5 py-2 text-base sm:text-sm outline-none bg-white font-semibold text-slate-800 focus:border-sky-600"></select>
               <button type="button" onclick="window.promptCreateFolder(true)" class="bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-700 px-3 rounded-lg text-xs font-bold cursor-pointer transition" title="Tạo thư mục mới">+</button>
             </div>
           </div>
         </div>
 
-        <div class="bg-slate-50 border-2 border-dashed border-slate-300 hover:border-sky-400 rounded-xl p-5 text-center transition">
-          <label class="block text-sm font-bold text-slate-800 mb-1">Chọn tệp tài liệu từ máy tính</label>
-          <p class="text-xs text-slate-500 italic mb-3.5">Tự động làm nét 3x3 Sharpen, khử dấu mộc đỏ & quét OCR 3.0x với mô hình <b>tessdata_best (vie)</b></p>
+        <div class="bg-slate-50 border-2 border-dashed border-slate-300 hover:border-sky-400 rounded-xl p-4 sm:p-5 text-center transition">
+          <label class="block text-xs sm:text-sm font-bold text-slate-800 mb-1">Chọn tệp tài liệu từ thiết bị</label>
+          <p class="text-[11px] sm:text-xs text-slate-500 italic mb-3.5">Tự động làm nét 3x3 Sharpen, khử dấu mộc đỏ & quét OCR 3.0x với mô hình <b>tessdata_best (vie)</b></p>
           <input type="file" id="fileInput" accept=".pdf,.docx,.xlsx,.xls,.txt,.csv,.png,.jpg,.jpeg,.webp" class="block w-full text-xs text-slate-600 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-sky-600 file:text-white hover:file:bg-sky-700 cursor-pointer">
           <div id="extractProgress" class="hidden mt-3.5 text-xs font-medium text-amber-900 bg-amber-50 border border-amber-200 px-3 py-2 rounded-lg text-left"></div>
         </div>
@@ -295,7 +307,7 @@
         </div>
       </div>
 
-      <div class="px-5 py-3.5 bg-slate-50 border-t border-slate-200 flex justify-end gap-2.5 shrink-0">
+      <div class="px-4 sm:px-5 py-3.5 bg-slate-50 border-t border-slate-200 flex justify-end gap-2.5 shrink-0">
         <button type="button" onclick="window.closeUploadModal()" class="h-9 px-4 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 font-semibold text-xs transition cursor-pointer">
           Hủy bỏ
         </button>
@@ -316,7 +328,7 @@
       <p id="moveModalDocTitle" class="text-xs font-semibold text-slate-700 bg-slate-50 border border-slate-200 p-2.5 rounded-lg truncate"></p>
       <div>
         <label class="block text-xs font-bold text-slate-700 mb-1.5">Chọn thư mục đích:</label>
-        <select id="moveTargetSelect" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm font-semibold text-slate-800 focus:border-sky-600 outline-none"></select>
+        <select id="moveTargetSelect" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-base sm:text-sm font-semibold text-slate-800 focus:border-sky-600 outline-none"></select>
       </div>
       <div class="flex justify-between items-center pt-2">
         <button type="button" onclick="window.promptCreateFolder(false, true)" class="text-xs font-bold text-sky-700 hover:underline cursor-pointer">
@@ -334,103 +346,84 @@
     </div>
   </div>
 
-  <!-- MODAL 3: TRÌNH XEM NGUYÊN TRẠNG TÀI LIỆU GỐC (CUỘN LIÊN TỤC QUA CÁC TRANG BẰNG THANH TRƯỢT + THU PHÓNG & XOAY 90°) -->
-  <div id="originalViewerModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-[2px] hidden items-center justify-center p-2 sm:p-3 z-50">
-    <div class="bg-slate-900 rounded-xl max-w-[1440px] w-full h-[96vh] flex flex-col shadow-2xl overflow-hidden border border-slate-700">
+  <!-- MODAL 3: TRÌNH XEM NGUYÊN TRẠNG TÀI LIỆU GỐC (SIÊU NÉT HIDPI/RETINA TRÊN ĐIỆN THOẠI & MÁY TÍNH) -->
+  <div id="originalViewerModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-[2px] hidden items-center justify-center p-0 sm:p-3 z-50">
+    <div class="bg-slate-900 sm:rounded-xl max-w-[1440px] w-full h-full sm:h-[96vh] flex flex-col shadow-2xl overflow-hidden border-0 sm:border sm:border-slate-700">
       
-      <!-- Thanh Header 1 dòng cố định tuyệt đối -->
-      <div class="bg-slate-950 text-white px-3 sm:px-4 h-14 grid grid-cols-12 items-center gap-2 border-b border-slate-800 shrink-0">
+      <!-- Thanh Header -->
+      <div class="bg-slate-950 text-white px-2.5 sm:px-4 py-2 lg:py-0 lg:h-14 flex flex-wrap lg:grid lg:grid-cols-12 items-center justify-between gap-2 border-b border-slate-800 shrink-0">
         
         <!-- Cột Trái: Loại file & Tên tài liệu -->
-        <div class="col-span-3 flex items-center gap-2 min-w-0 pr-1">
+        <div class="lg:col-span-4 flex items-center gap-1.5 sm:gap-2 min-w-0 flex-1 lg:flex-initial pr-1">
           <span id="viewerBadge" class="text-[10px] font-extrabold bg-amber-400 text-slate-950 px-1.5 py-0.5 rounded shrink-0">BẢN GỐC</span>
           <h3 id="viewerTitle" class="font-bold text-xs sm:text-sm text-slate-100 truncate" title="">Tên tài liệu</h3>
         </div>
 
-        <!-- Cột Giữa: Điều khiển Trang (PDF) + Phóng to / Thu nhỏ & Xoay (Luôn hiển thị cho mọi loại tài liệu) -->
-        <div class="col-span-5 flex justify-center items-center">
-          <div id="pdfControls" class="hidden items-center gap-1 bg-slate-900 px-2.5 py-1 rounded-lg text-xs border border-slate-700 shrink-0 whitespace-nowrap">
-            <!-- Nhóm chuyển trang (Tự động nhảy số khi kéo thanh trượt hoặc bấm chuyển nhanh) -->
-            <div id="pdfPageNavGroup" class="flex items-center gap-1">
-              <button type="button" onclick="window.changePdfPage(-1)" class="w-14 h-7 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 text-slate-200 rounded font-semibold transition flex items-center justify-center cursor-pointer select-none">◀ Trước</button>
-              <div class="flex items-center justify-center gap-1 px-1">
-                <span class="text-slate-400 hidden sm:inline">Trang</span>
-                <input type="number" id="pdfPageInput" min="1" value="1"
-                       onchange="window.goToPdfPage(this.value)"
-                       onkeydown="if(event.key==='Enter'){event.preventDefault();window.goToPdfPage(this.value);}"
-                       class="w-12 h-7 text-center bg-slate-950 border border-slate-700 rounded text-white font-bold focus:outline-none focus:border-sky-500">
-                <span id="pdfTotalPages" class="font-semibold text-slate-400 w-10 text-left">/ 1</span>
-              </div>
-              <button type="button" onclick="window.changePdfPage(1)" class="w-14 h-7 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 text-slate-200 rounded font-semibold transition flex items-center justify-center cursor-pointer select-none">Sau ▶</button>
-              <span class="mx-0.5 text-slate-700">|</span>
-            </div>
-
-            <!-- Nhóm Phóng to / Thu nhỏ & Xoay -->
+        <!-- Cột Giữa: Chỉ hiển thị gọn cụm nút Phóng to / Thu nhỏ -->
+        <div class="lg:col-span-4 flex justify-center items-center shrink-0">
+          <div id="pdfControls" class="hidden items-center gap-1 bg-slate-900 px-2 py-1 rounded-lg text-[11px] sm:text-xs border border-slate-700 shrink-0 whitespace-nowrap">
             <button type="button" onclick="window.zoomPdf(-0.15)" class="w-7 h-7 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded font-bold flex items-center justify-center cursor-pointer select-none" title="Thu nhỏ tài liệu">−</button>
-            <button type="button" id="pdfZoomLabel" onclick="window.resetViewerZoom()" class="w-12 h-7 text-center font-semibold text-amber-300 hover:text-white hover:bg-slate-800 rounded transition select-none cursor-pointer" title="Nhấn để đưa về tỷ lệ chuẩn">100%</button>
+            <button type="button" id="pdfZoomLabel" onclick="window.resetViewerZoom()" class="w-11 sm:w-12 h-7 text-center font-semibold text-amber-300 hover:text-white hover:bg-slate-800 rounded transition select-none cursor-pointer" title="Nhấn để đưa về tỷ lệ vừa màn hình">100%</button>
             <button type="button" onclick="window.zoomPdf(0.15)" class="w-7 h-7 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded font-bold flex items-center justify-center cursor-pointer select-none" title="Phóng to tài liệu">+</button>
-            <span class="mx-0.5 text-slate-700">|</span>
-            <button type="button" onclick="window.rotateViewerPage(-90)" class="w-7 h-7 bg-slate-800 hover:bg-slate-700 text-sky-300 rounded font-bold flex items-center justify-center cursor-pointer select-none" title="Xoay trái 90°">↺</button>
-            <button type="button" onclick="window.rotateViewerPage(90)" class="w-7 h-7 bg-slate-800 hover:bg-slate-700 text-sky-300 rounded font-bold flex items-center justify-center cursor-pointer select-none" title="Xoay phải 90°">↻</button>
           </div>
         </div>
 
         <!-- Cột Phải: Các nút chế độ & đóng -->
-        <div class="col-span-4 flex items-center justify-end gap-1.5 shrink-0">
-          <button type="button" id="sideBySideBtn" onclick="window.toggleSideBySideEditor()" class="h-8 px-2.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/50 text-xs font-bold transition whitespace-nowrap cursor-pointer" title="Chia đôi màn hình: Bên trái xem Trang Gốc, Bên phải sửa lỗi chính tả OCR và Lưu">
-            📖 Song song & Sửa OCR
+        <div class="lg:col-span-4 flex items-center justify-end gap-1 sm:gap-1.5 shrink-0">
+          <button type="button" id="sideBySideBtn" onclick="window.toggleSideBySideEditor()" class="h-7 sm:h-8 px-2 sm:px-2.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/50 text-[11px] sm:text-xs font-bold transition whitespace-nowrap cursor-pointer" title="Chia đôi màn hình: Xem Trang Gốc & Sửa lỗi chính tả OCR">
+            📖 <span class="hidden sm:inline">Song song &</span> Sửa OCR
           </button>
-          <button type="button" id="switchModeBtn" onclick="window.toggleViewerMode()" class="h-8 px-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold transition whitespace-nowrap cursor-pointer">
-            Chế độ Văn bản
+          <button type="button" id="switchModeBtn" onclick="window.toggleViewerMode()" class="h-7 sm:h-8 px-2 sm:px-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-[11px] sm:text-xs font-semibold transition whitespace-nowrap cursor-pointer">
+            Văn bản
           </button>
-          <button type="button" id="viewerDownloadBtn" class="h-8 px-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-sm transition whitespace-nowrap cursor-pointer">
+          <button type="button" id="viewerDownloadBtn" class="h-7 sm:h-8 px-2 sm:px-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] sm:text-xs font-bold shadow-sm transition whitespace-nowrap cursor-pointer">
             Tải gốc
           </button>
-          <button type="button" onclick="window.closeViewerModal()" class="h-8 w-8 rounded-lg bg-slate-800 hover:bg-red-600 text-slate-300 hover:text-white text-lg font-bold flex items-center justify-center transition shrink-0 cursor-pointer" title="Đóng (Esc)">&times;</button>
+          <button type="button" onclick="window.closeViewerModal()" class="h-7 w-7 sm:h-8 sm:w-8 rounded-lg bg-slate-800 hover:bg-red-600 text-slate-300 hover:text-white text-base sm:text-lg font-bold flex items-center justify-center transition shrink-0 cursor-pointer" title="Đóng (Esc)">&times;</button>
         </div>
       </div>
 
       <!-- Thanh phụ dưới Header: Nơi liệt kê toàn bộ các trang khớp từ khóa của tài liệu đang mở -->
-      <div id="matchedPagesBar" class="hidden bg-slate-900 border-b border-slate-800 px-4 py-1.5 text-xs text-slate-200 flex items-center justify-between gap-3 shrink-0">
-        <div class="flex items-center gap-2 overflow-x-auto py-0.5">
-          <span class="font-bold shrink-0 text-amber-400">Trang khớp từ khóa:</span>
+      <div id="matchedPagesBar" class="hidden bg-slate-900 border-b border-slate-800 px-2.5 sm:px-4 py-1.5 text-xs text-slate-200 flex items-center justify-between gap-2 shrink-0">
+        <div class="flex items-center gap-1.5 sm:gap-2 overflow-x-auto py-0.5">
+          <span class="font-bold shrink-0 text-amber-400 text-[11px] sm:text-xs">Trang khớp:</span>
           <div id="matchedPagesList" class="flex items-center gap-1.5"></div>
         </div>
-        <span id="pageHighlightCountBadge" class="bg-amber-400 text-slate-950 font-bold px-2.5 py-0.5 rounded text-[11px] shrink-0 whitespace-nowrap hidden">0 vị trí</span>
+        <span id="pageHighlightCountBadge" class="bg-amber-400 text-slate-950 font-bold px-2 py-0.5 rounded text-[10px] sm:text-[11px] shrink-0 whitespace-nowrap hidden">0 vị trí</span>
       </div>
 
-      <!-- THÂN TRÌNH XEM: HỖ TRỢ CUỘN DỌC LIÊN TỤC QUA CÁC TRANG PDF & CUỘN NGANG CHO BẢNG EXCEL -->
-      <div class="flex-1 flex overflow-hidden relative">
+      <!-- THÂN TRÌNH XEM -->
+      <div class="flex-1 flex flex-col md:flex-row overflow-hidden relative">
         
-        <div class="flex-1 overflow-auto bg-slate-800/90 p-3 sm:p-5 relative" id="viewerScrollContainer">
+        <div class="flex-1 overflow-auto bg-slate-800/90 p-1.5 sm:p-5 relative" id="viewerScrollContainer">
           <div id="viewerLoading" class="hidden my-20 mx-auto text-center text-white space-y-3 max-w-md bg-slate-900 p-6 rounded-xl border border-slate-700 shadow-lg">
             <div class="inline-block w-9 h-9 border-4 border-sky-400 border-t-transparent rounded-full animate-spin"></div>
             <p id="viewerLoadingText" class="text-sm font-medium text-slate-200">Đang tải dữ liệu tài liệu gốc...</p>
           </div>
 
-          <!-- Khung chứa danh sách toàn bộ các trang PDF xếp dọc liên tục (Continuous Vertical Scroll) -->
-          <div id="pdfCanvasWrapper" class="hidden flex-col items-center gap-6 w-fit mx-auto"></div>
+          <!-- Khung chứa danh sách toàn bộ các trang PDF xếp dọc liên tục -->
+          <div id="pdfCanvasWrapper" class="hidden flex-col items-center gap-3 sm:gap-6 w-fit mx-auto"></div>
 
           <!-- Khung hiển thị Excel / Word / Ảnh -->
-          <div id="otherOriginalWrapper" class="hidden bg-white text-slate-800 rounded-xl shadow-2xl w-fit min-w-full p-4 sm:p-6 h-fit mx-auto orig-doc-view transition-transform duration-150"></div>
-          <div id="rawTextWrapper" class="hidden bg-white text-slate-800 rounded-xl shadow-2xl max-w-5xl w-full p-6 sm:p-8 h-fit mx-auto text-sm whitespace-pre-wrap leading-relaxed"></div>
+          <div id="otherOriginalWrapper" class="hidden bg-white text-slate-800 rounded-lg sm:rounded-xl shadow-2xl w-fit min-w-full p-3 sm:p-6 h-fit mx-auto orig-doc-view transition-transform duration-150"></div>
+          <div id="rawTextWrapper" class="hidden bg-white text-slate-800 rounded-lg sm:rounded-xl shadow-2xl max-w-5xl w-full p-4 sm:p-8 h-fit mx-auto text-xs sm:text-sm whitespace-pre-wrap leading-relaxed"></div>
         </div>
 
-        <aside id="sideBySideEditorPane" class="hidden w-1/2 max-w-2xl bg-slate-900 border-l border-slate-700 flex-col shrink-0">
-          <div class="px-4 py-2.5 bg-slate-950 border-b border-slate-800 flex justify-between items-center gap-2">
-            <div>
+        <aside id="sideBySideEditorPane" class="hidden w-full h-2/5 md:h-auto md:w-1/2 max-w-2xl bg-slate-900 border-t md:border-t-0 md:border-l border-slate-700 flex-col shrink-0">
+          <div class="px-3 sm:px-4 py-2 bg-slate-950 border-b border-slate-800 flex justify-between items-center gap-2">
+            <div class="min-w-0">
               <span id="sideEditorPageLabel" class="text-xs font-extrabold text-amber-400 uppercase tracking-wider">Văn bản OCR — Trang 1</span>
-              <p class="text-[11px] text-slate-400 italic">Tự động nhảy theo trang đang cuộn bên trái, sửa chữ và bấm Lưu</p>
+              <p class="text-[10px] sm:text-[11px] text-slate-400 italic truncate">Tự động nhảy theo trang đang cuộn, sửa chữ và bấm Lưu</p>
             </div>
-            <div class="flex items-center gap-2">
-              <button type="button" id="savePageOcrEditBtn" onclick="window.saveCurrentPageOcrTextEdit()" class="h-8 px-3.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow cursor-pointer transition">
-                💾 Lưu sửa trang này
+            <div class="flex items-center gap-1.5 shrink-0">
+              <button type="button" id="savePageOcrEditBtn" onclick="window.saveCurrentPageOcrTextEdit()" class="h-7 sm:h-8 px-2.5 sm:px-3.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow cursor-pointer transition">
+                💾 Lưu sửa
               </button>
               <button type="button" onclick="window.toggleSideBySideEditor()" class="text-slate-400 hover:text-white text-lg font-bold px-1.5 cursor-pointer" title="Đóng khung sửa song song">&times;</button>
             </div>
           </div>
-          <div class="flex-1 p-4 flex flex-col bg-slate-900">
-            <textarea id="sideBySideTextarea" class="w-full flex-1 bg-white text-slate-900 rounded-lg p-4 text-sm leading-relaxed border border-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-400 font-sans resize-none" placeholder="Nội dung văn bản của trang này..."></textarea>
+          <div class="flex-1 p-2.5 sm:p-4 flex flex-col bg-slate-900">
+            <textarea id="sideBySideTextarea" class="w-full flex-1 bg-white text-slate-900 rounded-lg p-3 sm:p-4 text-base sm:text-sm leading-relaxed border border-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-400 font-sans resize-none" placeholder="Nội dung văn bản của trang này..."></textarea>
           </div>
         </aside>
 
@@ -475,6 +468,7 @@
     let currentSelectedFolder = "ALL";
     let selectedDocIdInTree = null;
     let docIdPendingMove = null;
+    let isMobileTreeCollapsed = false;
 
     let currentSearchMatchedDocsMap = new Map();
 
@@ -507,6 +501,45 @@
     let isProgrammaticScrolling = false;
     let scrollTicking = false;
 
+    window.toggleMobileFolderTree = () => {
+      const bodyEl = document.getElementById('mobileFolderTreeBody');
+      const btnEl = document.getElementById('mobileToggleTreeBtn');
+      isMobileTreeCollapsed = !isMobileTreeCollapsed;
+      if (isMobileTreeCollapsed) {
+        bodyEl.classList.add('hidden');
+        btnEl.textContent = "Mở rộng ▼";
+      } else {
+        bodyEl.classList.remove('hidden');
+        btnEl.textContent = "Thu gọn ▲";
+      }
+    };
+
+    // Tính toán tỷ lệ khung nhìn CSS vừa khít chiều ngang màn hình điện thoại (trên máy tính giữ 135%)
+    async function computeOptimalInitialPdfScale(pdfInstance, rotationDeg = 0) {
+      if (window.innerWidth >= 768) return 1.35;
+      try {
+        const page1 = await pdfInstance.getPage(1);
+        const baseRot = page1.rotate || 0;
+        const unitVp = page1.getViewport({ scale: 1.0, rotation: (baseRot + rotationDeg) % 360 });
+        const containerW = Math.max(280, (document.getElementById('viewerScrollContainer')?.clientWidth || window.innerWidth) - 12);
+        const fitScale = containerW / Math.max(1, unitVp.width);
+        return Math.max(0.45, Math.min(1.35, Number(fitScale.toFixed(2))));
+      } catch (e) {
+        return 0.66;
+      }
+    }
+
+    // Hệ số nhân mật độ điểm ảnh HiDPI / Retina giúp trang PDF trên điện thoại sắc nét tuyệt đối
+    function getHiDpiCanvasSupersampleRatio(cssScale) {
+      const dpr = window.devicePixelRatio || 1;
+      if (window.innerWidth < 768) {
+        const minTargetEffectiveScale = 2.25;
+        const neededMultiplier = Math.max(dpr, minTargetEffectiveScale / Math.max(0.4, cssScale));
+        return Math.min(3.5, Math.max(2.0, neededMultiplier));
+      }
+      return Math.min(2.25, Math.max(1.5, dpr));
+    }
+
     // =========================================================================
     // 0. QUẢN LÝ ĐĂNG NHẬP & PHÂN QUYỀN (ADMIN / USER)
     // =========================================================================
@@ -537,7 +570,7 @@
 
       if (isAdmin()) {
         roleBadge.textContent = "👑 Admin";
-        roleBadge.className = "inline-flex items-center text-xs bg-amber-500/20 text-amber-300 px-3 py-1.5 rounded-full font-bold border border-amber-500/40";
+        roleBadge.className = "inline-flex items-center text-[11px] sm:text-xs bg-amber-500/20 text-amber-300 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full font-bold border border-amber-500/40";
         headerUploadBtn.classList.remove('hidden');
         headerUploadBtn.classList.add('flex');
         btnCreateFolderMain.classList.remove('hidden');
@@ -546,7 +579,7 @@
         switchModeBtn.classList.remove('hidden');
       } else {
         roleBadge.textContent = "👤 User";
-        roleBadge.className = "inline-flex items-center text-xs bg-slate-800 text-sky-300 px-3 py-1.5 rounded-full font-bold border border-slate-700";
+        roleBadge.className = "inline-flex items-center text-[11px] sm:text-xs bg-slate-800 text-sky-300 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full font-bold border border-slate-700";
         headerUploadBtn.classList.add('hidden');
         headerUploadBtn.classList.remove('flex');
         btnCreateFolderMain.classList.add('hidden');
@@ -598,7 +631,6 @@
       applyRolePermissionsUI();
     };
 
-    // Phím tắt Esc để đóng nhanh các cửa sổ Modal đang mở
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         const viewerModal = document.getElementById('originalViewerModal');
@@ -1101,7 +1133,6 @@
       } catch (e) {}
     }
 
-    // Tự động chuẩn hóa chỉ mục cho các file Excel/Word tải lên từ phiên bản cũ (An toàn, không xung đột đa người dùng)
     let isHealingRunning = false;
     async function autoHealExcelAndWordDocumentsInBackground() {
       if (isHealingRunning) return;
@@ -1241,7 +1272,7 @@
 
         totalDocsCountBadge.textContent = `${allDocuments.length}`;
         statusBadge.textContent = `Đã đồng bộ (${allDocuments.length} tài liệu)`;
-        statusBadge.className = "hidden sm:inline-flex items-center text-xs bg-emerald-950/80 text-emerald-300 px-3 py-1.5 rounded-full font-semibold border border-emerald-700/60";
+        statusBadge.className = "hidden md:inline-flex items-center text-xs bg-emerald-950/80 text-emerald-300 px-3 py-1.5 rounded-full font-semibold border border-emerald-700/60";
 
         renderFolderTree();
         performSearch();
@@ -1250,7 +1281,7 @@
       } catch (err) {
         console.error(err);
         statusBadge.textContent = "Lỗi kết nối";
-        statusBadge.className = "hidden sm:inline-flex items-center text-xs bg-red-900 text-red-200 px-3 py-1.5 rounded-full font-semibold";
+        statusBadge.className = "hidden md:inline-flex items-center text-xs bg-red-900 text-red-200 px-3 py-1.5 rounded-full font-semibold";
         errorBox.classList.remove('hidden');
         errorBox.innerHTML = `<p class="font-bold">Không thể kết nối dữ liệu hệ thống: ${err.message}</p>`;
       }
@@ -1326,7 +1357,7 @@
             </div>
 
             ${isOpen ? `
-              <div class="border-t border-slate-100 bg-slate-50/50 pl-4 pr-2 py-1.5 space-y-1">
+              <div class="border-t border-slate-100 bg-slate-50/50 pl-3 sm:pl-4 pr-2 py-1.5 space-y-1">
                 ${docsInFolder.length === 0 ? `
                   <div class="text-xs text-slate-400 italic py-1.5 pl-2">Chưa có tài liệu trong thư mục này</div>
                 ` : docsInFolder.map(d => {
@@ -1350,7 +1381,7 @@
                   return `
                     <div ${dragItemHtml}
                          onclick="window.clickFileInTree('${d.id}', ${targetOpenPage})"
-                         class="group flex items-center justify-between gap-2 px-2.5 py-1.5 rounded-md cursor-pointer text-xs transition ${docItemStyle}"
+                         class="group flex items-center justify-between gap-2 px-2 sm:px-2.5 py-2 sm:py-1.5 rounded-md cursor-pointer text-xs transition ${docItemStyle}"
                          title="Nhấn để mở tài liệu">
                       <div class="flex items-center gap-2 min-w-0 flex-1">
                         ${getFileBadgeMini(d.fileType)}
@@ -1363,7 +1394,7 @@
                           </span>
                         ` : ''}
                         ${adminMode ? `
-                          <div class="hidden group-hover:flex items-center gap-1" onclick="event.stopPropagation()">
+                          <div class="flex lg:hidden lg:group-hover:flex items-center gap-1" onclick="event.stopPropagation()">
                             <button type="button" onclick="window.openMoveModal('${d.id}')" class="text-[11px] text-slate-500 hover:text-sky-700 bg-slate-100 hover:bg-sky-50 px-1.5 py-0.5 rounded font-medium cursor-pointer" title="Chuyển sang thư mục khác">Chuyển</button>
                             <button type="button" onclick="window.deleteDocument('${d.id}')" class="text-[11px] text-slate-400 hover:text-red-600 bg-slate-100 hover:bg-red-50 px-1.5 py-0.5 rounded font-bold cursor-pointer" title="Xóa tài liệu">✕</button>
                           </div>
@@ -1562,7 +1593,6 @@
       const imgData = ctx.getImageData(0, 0, w, h);
       const data = imgData.data;
 
-      // BƯỚC 1: Lọc kênh màu khử Dấu mộc đỏ / Watermark màu & Chuyển sang mảng độ sáng Grayscale (Luminance)
       const grayBuf = new Float32Array(w * h);
 
       for (let i = 0, p = 0; i < data.length; i += 4, p++) {
@@ -1584,7 +1614,6 @@
         }
       }
 
-      // BƯỚC 2: Ma trận tích chập 3x3 Sharpen Convolution (Unsharp Mask) làm sắc nét biên chữ và dấu thanh tiếng Việt
       const sharpenedBuf = new Float32Array(w * h);
       sharpenedBuf.set(grayBuf);
 
@@ -1603,7 +1632,6 @@
         }
       }
 
-      // BƯỚC 3: Tăng độ tương phản & Lọc ngưỡng nền xám (Threshold) giữ nguyên độ liền lạc của các dấu sắc, hỏi, ngã, nặng
       const contrast = 35;
       const threshold = 190;
       const contrastFactor = (259 * (contrast + 255)) / (255 * (259 - contrast));
@@ -1715,7 +1743,6 @@
 
           applyAutomaticOptimalFilterToCanvas(canvas);
           const imgDataUrl = canvas.toDataURL('image/png');
-          // Giải phóng RAM Canvas ngay sau khi lấy DataURL
           canvas.width = 0;
           canvas.height = 0;
 
@@ -1757,7 +1784,6 @@
       return cleanAndNormalizeVietnameseText(ret.data.text || "");
     }
 
-    // Cập nhật nội dung văn bản lên Đám mây an toàn tuyệt đối (Không xóa dữ liệu cũ trước khi ghi thành công dữ liệu mới)
     async function overwriteDocumentTextInCloud(item, newFullText) {
       const textChunks = [];
       for (let i = 0; i < newFullText.length; i += MAX_TEXT_CHARS) {
@@ -1767,14 +1793,12 @@
 
       const oldDocIds = [...(item.allDocIds || [item.id])];
 
-      // Trường hợp phổ biến nhất (1 phần): Cập nhật trực tiếp tại chỗ (Atomic updateDoc) để nhanh gấp đôi và không bao giờ mất dữ liệu
       if (textChunks.length === 1 && oldDocIds.length === 1) {
         await updateDoc(doc(db, "tai_lieu_trien_khai", oldDocIds[0]), {
           content: textChunks[0],
           indexVersion: 2
         });
       } else {
-        // Trường hợp tài liệu cực lớn nhiều phần: Ghi xong các bản ghi mới trước, sau đó mới xóa bản ghi cũ
         const newDocIds = [];
         for (let tIdx = 0; tIdx < textChunks.length; tIdx++) {
           const addedRef = await addDoc(colRef, {
@@ -1999,7 +2023,7 @@
     });
 
     // =========================================================================
-    // 4. BỘ TÌM KIẾM 2 Ô CHÍNH XÁC + LINH HOẠT SỐ & HIỂN THỊ KẾT QUẢ TINH GỌN ([THƯ MỤC] / [TÊN FILE] /)
+    // 4. BỘ TÌM KIẾM 2 Ô CHÍNH XÁC + LINH HOẠT SỐ & HIỂN THỊ KẾT QUẢ TỐI ƯU MOBILE/DESKTOP
     // =========================================================================
 
     window.clearSearchBox = (boxNum) => {
@@ -2222,30 +2246,30 @@
 
       return `
         <div onclick="window.openOriginalAtPage('${d.id}', ${bestPageNum})"
-             class="group cursor-pointer rounded-xl border ${rowStyle} px-4 py-3.5 shadow-sm transition flex items-center justify-between gap-3"
+             class="group cursor-pointer rounded-xl border ${rowStyle} px-3.5 sm:px-4 py-3 sm:py-3.5 shadow-sm transition flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3"
              title="Nhấn để mở tài liệu và xem ngay các trang chứa kết quả">
           
-          <div class="flex items-center gap-2.5 min-w-0 flex-1">
-            <span class="text-xs font-extrabold ${isFuzzyCard ? 'bg-purple-200 text-purple-900' : 'bg-amber-200/80 text-amber-950'} px-2 py-0.5 rounded shrink-0">
+          <div class="flex items-start sm:items-center gap-2 min-w-0 flex-1">
+            <span class="text-[11px] sm:text-xs font-extrabold ${isFuzzyCard ? 'bg-purple-200 text-purple-900' : 'bg-amber-200/80 text-amber-950'} px-1.5 sm:px-2 py-0.5 rounded shrink-0 mt-0.5 sm:mt-0">
               #${rankIdx + 1}
             </span>
-            ${getFileBadgeMini(d.fileType)}
+            <div class="mt-0.5 sm:mt-0 shrink-0">${getFileBadgeMini(d.fileType)}</div>
 
-            <div class="text-sm sm:text-[15px] truncate flex items-center gap-1.5 min-w-0">
-              <span class="font-semibold text-sky-800 bg-sky-100/70 px-2 py-0.5 rounded text-xs shrink-0">${escapeHtml(folderName)}</span>
+            <div class="text-xs sm:text-[15px] flex flex-wrap sm:flex-nowrap items-center gap-1 sm:gap-1.5 min-w-0">
+              <span class="font-semibold text-sky-800 bg-sky-100/70 px-2 py-0.5 rounded text-[11px] sm:text-xs shrink-0">${escapeHtml(folderName)}</span>
               <span class="text-slate-400 font-bold">/</span>
-              <span class="font-bold text-slate-900 group-hover:text-sky-700 truncate transition">${escapeHtml(d.title)}</span>
+              <span class="font-bold text-slate-900 group-hover:text-sky-700 sm:truncate break-words transition">${escapeHtml(d.title)}</span>
               <span class="text-slate-400 font-bold">/</span>
             </div>
           </div>
 
-          <div class="flex items-center gap-2 shrink-0">
-            <span class="text-xs font-bold ${isFuzzyCard ? 'text-purple-800 bg-purple-100 border-purple-200' : 'text-amber-900 bg-amber-100/90 border-amber-300'} border px-2.5 py-1 rounded-full">
+          <div class="flex items-center justify-end gap-2 shrink-0 self-end sm:self-auto">
+            <span class="text-[11px] sm:text-xs font-bold ${isFuzzyCard ? 'text-purple-800 bg-purple-100 border-purple-200' : 'text-amber-900 bg-amber-100/90 border-amber-300'} border px-2.5 py-0.5 sm:py-1 rounded-full">
               🎯 ${pageCount} trang khớp (Mở Trang ${bestPageNum})
             </span>
 
             ${hasOriginalFile ? `
-              <div class="hidden sm:flex items-center gap-1 opacity-75 group-hover:opacity-100" onclick="event.stopPropagation()">
+              <div class="flex items-center gap-1" onclick="event.stopPropagation()">
                 <button type="button" id="btn-download-${d.id}" onclick="window.downloadOrOpenFile('${d.id}', 'download')" class="h-7 px-2 rounded bg-white hover:bg-slate-100 text-slate-600 border border-slate-200 text-[11px] font-semibold transition cursor-pointer" title="Tải file gốc">
                   📥
                 </button>
@@ -2259,8 +2283,8 @@
     function renderResults(exactItems, fuzzyItems) {
       if (exactItems.length === 0 && fuzzyItems.length === 0) {
         resultsList.innerHTML = `
-          <div class="bg-white p-8 rounded-xl text-center border border-slate-200">
-            <p class="text-sm font-semibold text-slate-600">Không tìm thấy tài liệu nào chứa nội dung phù hợp.</p>
+          <div class="bg-white p-6 sm:p-8 rounded-xl text-center border border-slate-200">
+            <p class="text-xs sm:text-sm font-semibold text-slate-600">Không tìm thấy tài liệu nào chứa nội dung phù hợp.</p>
           </div>`;
         return;
       }
@@ -2269,7 +2293,7 @@
       if (exactItems.length > 0) {
         html += `
           <div class="space-y-2">
-            <div class="text-xs font-bold text-slate-500 uppercase tracking-wider px-1">
+            <div class="text-[11px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider px-1">
               Danh sách tài liệu chứa kết quả (Nhấn vào tài liệu để xem):
             </div>
             ${exactItems.map((item, idx) => renderCompactDocRowHtml(item, idx)).join('')}
@@ -2280,7 +2304,7 @@
       if (fuzzyItems.length > 0) {
         html += `
           <div class="pt-3 space-y-2">
-            <div class="text-xs font-bold text-purple-800 uppercase tracking-wider px-1">
+            <div class="text-[11px] sm:text-xs font-bold text-purple-800 uppercase tracking-wider px-1">
               Gợi ý khớp gần đúng trên bản Scan / OCR mờ:
             </div>
             ${fuzzyItems.map((item, idx) => renderCompactDocRowHtml(item, idx)).join('')}
@@ -2292,7 +2316,7 @@
     }
 
     // =========================================================================
-    // 5. TRÌNH XEM TÀI LIỆU GỐC + CUỘN DỌC LIÊN TỤC 60 FPS QUA CÁC TRANG PDF
+    // 5. TRÌNH XEM TÀI LIỆU GỐC + KẾT XUẤT CANVAS SIÊU NÉT HIDPI/RETINA TRÊN ĐIỆN THOẠI
     // =========================================================================
 
     function revokeActiveViewerBlobUrls() {
@@ -2376,20 +2400,10 @@
       document.getElementById('pdfZoomLabel').textContent = `${Math.round(activeDocZoom * 100)}%`;
     }
 
-    window.rotateViewerPage = async (deltaDeg) => {
-      activeViewerRotation = (activeViewerRotation + deltaDeg + 360) % 360;
-      const fType = (activeViewerDoc?.fileType || "").toUpperCase();
-      if (fType === 'PDF' && activePdfInstance && !isRawTextMode) {
-        await buildContinuousPdfPagesLayout(activePdfPage, false);
-      } else {
-        applyNonPdfZoomAndRotation();
-      }
-    };
-
     window.zoomPdf = async (delta) => {
       const fType = (activeViewerDoc?.fileType || "").toUpperCase();
       if (fType === 'PDF' && activePdfInstance && !isRawTextMode) {
-        activePdfScale = Math.max(0.5, Math.min(3.0, Number((activePdfScale + delta).toFixed(2))));
+        activePdfScale = Math.max(0.35, Math.min(3.0, Number((activePdfScale + delta).toFixed(2))));
         await buildContinuousPdfPagesLayout(activePdfPage, false);
       } else {
         activeDocZoom = Math.max(0.5, Math.min(2.5, Number((activeDocZoom + delta).toFixed(2))));
@@ -2400,7 +2414,7 @@
     window.resetViewerZoom = async () => {
       const fType = (activeViewerDoc?.fileType || "").toUpperCase();
       if (fType === 'PDF' && activePdfInstance && !isRawTextMode) {
-        activePdfScale = 1.35;
+        activePdfScale = await computeOptimalInitialPdfScale(activePdfInstance, activeViewerRotation);
         await buildContinuousPdfPagesLayout(activePdfPage, false);
       } else {
         activeDocZoom = 1.0;
@@ -2417,12 +2431,12 @@
       if (isSideBySideOpen) {
         pane.classList.remove('hidden');
         pane.classList.add('flex');
-        btn.className = "h-8 px-2.5 rounded-lg bg-amber-400 text-slate-950 font-extrabold text-xs transition whitespace-nowrap cursor-pointer shadow";
+        btn.className = "h-7 sm:h-8 px-2 sm:px-2.5 rounded-lg bg-amber-400 text-slate-950 font-extrabold text-[11px] sm:text-xs transition whitespace-nowrap cursor-pointer shadow";
         syncSideBySideTextareaWithCurrentPage();
       } else {
         pane.classList.add('hidden');
         pane.classList.remove('flex');
-        btn.className = "h-8 px-2.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/50 text-xs font-bold transition whitespace-nowrap cursor-pointer";
+        btn.className = "h-7 sm:h-8 px-2 sm:px-2.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/50 text-[11px] sm:text-xs font-bold transition whitespace-nowrap cursor-pointer";
       }
     };
 
@@ -2470,10 +2484,10 @@
         performSearch();
 
         saveBtnEl.textContent = "✅ Đã lưu!";
-        setTimeout(() => { saveBtnEl.textContent = "💾 Lưu sửa trang này"; }, 1400);
+        setTimeout(() => { saveBtnEl.textContent = "💾 Lưu sửa"; }, 1400);
       } catch (err) {
         alert("Lỗi khi lưu văn bản sửa đổi: " + err.message);
-        saveBtnEl.textContent = "💾 Lưu sửa trang này";
+        saveBtnEl.textContent = "💾 Lưu sửa";
       } finally {
         saveBtnEl.disabled = false;
       }
@@ -2498,16 +2512,11 @@
       const changed = (activePdfPage !== clamped);
       activePdfPage = clamped;
 
-      const pageInput = document.getElementById('pdfPageInput');
-      if (document.activeElement !== pageInput) {
-        pageInput.value = activePdfPage;
-      }
-
       document.querySelectorAll('.page-chip-btn').forEach(btn => {
         if (parseInt(btn.dataset.page, 10) === activePdfPage) {
-          btn.className = "page-chip-btn bg-amber-400 text-slate-950 font-extrabold px-2.5 py-0.5 rounded text-xs shadow shrink-0 cursor-pointer";
+          btn.className = "page-chip-btn bg-amber-400 text-slate-950 font-extrabold px-2 sm:px-2.5 py-0.5 rounded text-[11px] sm:text-xs shadow shrink-0 cursor-pointer";
         } else {
-          btn.className = "page-chip-btn bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-2.5 py-0.5 rounded text-xs shrink-0 cursor-pointer";
+          btn.className = "page-chip-btn bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-2 sm:px-2.5 py-0.5 rounded text-[11px] sm:text-xs shrink-0 cursor-pointer";
         }
       });
 
@@ -2517,13 +2526,13 @@
         countBadge.classList.remove('hidden');
         const hlCount = slotEl && slotEl.dataset.hlCount !== undefined ? parseInt(slotEl.dataset.hlCount, 10) : null;
         if (hlCount !== null && hlCount > 0) {
-          countBadge.textContent = `Trang ${activePdfPage}: Đã tô sáng ${hlCount} vị trí`;
+          countBadge.textContent = `Trang ${activePdfPage}: ${hlCount} vị trí`;
         } else if (hlCount === 0) {
           countBadge.textContent = isAdmin()
-            ? `Trang ${activePdfPage}: Trang ảnh OCR (Bấm 'Song song & Sửa OCR' hoặc 'Chế độ Văn bản')`
-            : `Trang ${activePdfPage}: Trang ảnh Scan`;
+            ? `Trang ${activePdfPage}: Ảnh OCR`
+            : `Trang ${activePdfPage}: Bản Scan`;
         } else {
-          countBadge.textContent = `Đang xem Trang ${activePdfPage}`;
+          countBadge.textContent = `Trang ${activePdfPage}`;
         }
       } else {
         countBadge.classList.add('hidden');
@@ -2574,7 +2583,7 @@
           </div>
           <canvas class="pdf-page-canvas block relative z-[1]"></canvas>
           <div class="pdf-page-overlay absolute inset-0 pointer-events-none overflow-hidden z-[10]"></div>
-          <div class="bg-slate-900/75 text-amber-300 text-[11px] font-bold px-2.5 py-0.5 rounded shadow pointer-events-none absolute bottom-2.5 right-2.5 z-[15]">
+          <div class="bg-slate-900/75 text-amber-300 text-[10px] sm:text-[11px] font-bold px-2 py-0.5 rounded shadow pointer-events-none absolute bottom-2 right-2 z-[15]">
             Trang ${p} / ${numPages}
           </div>
         `;
@@ -2642,27 +2651,44 @@
       try {
         const page = await activePdfInstance.getPage(pageNum);
         const baseRotation = page.rotate || 0;
-        const viewport = page.getViewport({
+        const rotDeg = (baseRotation + activeViewerRotation) % 360;
+
+        // 1. cssViewport: Định vị bố cục hiển thị vừa khít màn hình và tọa độ các hộp Highlight
+        const cssViewport = page.getViewport({
           scale: activePdfScale,
-          rotation: (baseRotation + activeViewerRotation) % 360
+          rotation: rotDeg
+        });
+
+        // 2. renderViewport: Kết xuất điểm ảnh thực tế theo mật độ màn hình HiDPI / Retina
+        const hiDpiRatio = getHiDpiCanvasSupersampleRatio(activePdfScale);
+        const renderViewport = page.getViewport({
+          scale: activePdfScale * hiDpiRatio,
+          rotation: rotDeg
         });
 
         const canvas = slotEl.querySelector('.pdf-page-canvas');
         const overlayDiv = slotEl.querySelector('.pdf-page-overlay');
         const placeholder = slotEl.querySelector('.pdf-page-placeholder');
 
-        const w = Math.round(viewport.width);
-        const h = Math.round(viewport.height);
+        const cssW = Math.round(cssViewport.width);
+        const cssH = Math.round(cssViewport.height);
 
-        slotEl.style.width = `${w}px`;
-        slotEl.style.height = `${h}px`;
-        canvas.width = w;
-        canvas.height = h;
-        overlayDiv.style.width = `${w}px`;
-        overlayDiv.style.height = `${h}px`;
+        slotEl.style.width = `${cssW}px`;
+        slotEl.style.height = `${cssH}px`;
+
+        canvas.width = Math.round(renderViewport.width);
+        canvas.height = Math.round(renderViewport.height);
+        canvas.style.width = `${cssW}px`;
+        canvas.style.height = `${cssH}px`;
+
+        overlayDiv.style.width = `${cssW}px`;
+        overlayDiv.style.height = `${cssH}px`;
         overlayDiv.innerHTML = "";
 
-        const renderTask = page.render({ canvasContext: canvas.getContext('2d'), viewport });
+        const renderTask = page.render({
+          canvasContext: canvas.getContext('2d'),
+          viewport: renderViewport
+        });
         pdfActiveRenderTasks.set(pageNum, renderTask);
         await renderTask.promise;
         pdfActiveRenderTasks.delete(pageNum);
@@ -2759,23 +2785,23 @@
               const item = items[itemIdx];
               if (!item || !item.transform) return;
 
-              const tx = pdfjsLib.Util.transform(viewport.transform, item.transform);
-              const fontHeight = Math.max(12, Math.sqrt((tx[2] * tx[2]) + (tx[3] * tx[3])));
+              const tx = pdfjsLib.Util.transform(cssViewport.transform, item.transform);
+              const fontHeight = Math.max(10, Math.sqrt((tx[2] * tx[2]) + (tx[3] * tx[3])));
               const fullItemWidth = (item.width ? item.width * activePdfScale : fontHeight * (item.str.length * 0.55));
 
               const startRatio = Math.max(0, seg.minChar / seg.itemLen);
               const endRatio = Math.min(1, (seg.maxChar + 1) / seg.itemLen);
 
               const subX = tx[4] + fullItemWidth * startRatio;
-              const subWidth = Math.max(14, fullItemWidth * (endRatio - startRatio));
+              const subWidth = Math.max(12, fullItemWidth * (endRatio - startRatio));
               const subY = tx[5] - fontHeight;
 
               const boxDiv = document.createElement('div');
               boxDiv.className = boxClass;
-              boxDiv.style.left = `${subX - 3}px`;
+              boxDiv.style.left = `${subX - 2}px`;
               boxDiv.style.top = `${subY - 2}px`;
-              boxDiv.style.width = `${subWidth + 6}px`;
-              boxDiv.style.height = `${fontHeight + 5}px`;
+              boxDiv.style.width = `${subWidth + 4}px`;
+              boxDiv.style.height = `${fontHeight + 4}px`;
 
               overlayDiv.appendChild(boxDiv);
               if (!firstHighlightBoxEl) firstHighlightBoxEl = boxDiv;
@@ -2800,9 +2826,11 @@
           }, 80);
         }
 
-        if (pdfRenderedPagesSet.size > 14) {
+        const maxCachedPages = window.innerWidth < 768 ? 8 : 14;
+        const maxDistance = window.innerWidth < 768 ? 5 : 9;
+        if (pdfRenderedPagesSet.size > maxCachedPages) {
           for (const oldPage of Array.from(pdfRenderedPagesSet)) {
-            if (Math.abs(oldPage - activePdfPage) > 9) {
+            if (Math.abs(oldPage - activePdfPage) > maxDistance) {
               const farSlot = document.getElementById(`pdf-page-slot-${oldPage}`);
               if (farSlot) {
                 const farCanvas = farSlot.querySelector('.pdf-page-canvas');
@@ -2822,7 +2850,6 @@
       }
     }
 
-    // Lắng nghe sự kiện cuộn thanh trượt tối ưu 60 FPS bằng requestAnimationFrame & offsetTop
     const viewerScrollEl = document.getElementById('viewerScrollContainer');
     viewerScrollEl.addEventListener('scroll', () => {
       if (isProgrammaticScrolling || isRawTextMode || !activePdfInstance || scrollTicking) return;
@@ -2883,7 +2910,6 @@
       modal.classList.add('flex');
 
       const pdfControls = document.getElementById('pdfControls');
-      const pdfPageNavGroup = document.getElementById('pdfPageNavGroup');
       const matchedPagesBar = document.getElementById('matchedPagesBar');
       const viewerLoading = document.getElementById('viewerLoading');
       const viewerLoadingText = document.getElementById('viewerLoadingText');
@@ -2900,7 +2926,7 @@
       document.getElementById('viewerTitle').textContent = item.title;
       document.getElementById('viewerTitle').title = item.title;
       document.getElementById('viewerBadge').textContent = `${item.fileType || 'TEXT'} GỐC`;
-      switchModeBtn.textContent = "Chế độ Văn bản";
+      switchModeBtn.textContent = "Văn bản";
       document.getElementById('viewerDownloadBtn').onclick = () => window.downloadOrOpenFile(item.id, 'download');
 
       if (isAdmin()) {
@@ -2933,24 +2959,19 @@
         const fType = (item.fileType || "").toUpperCase();
         const cacheKey = item.docGroupId || item.id;
 
-        if (fType === 'PDF') {
-          pdfPageNavGroup.classList.remove('hidden');
-          pdfPageNavGroup.classList.add('flex');
-        } else {
-          pdfPageNavGroup.classList.add('hidden');
-          pdfPageNavGroup.classList.remove('flex');
+        if (fType !== 'PDF') {
           document.getElementById('pdfZoomLabel').textContent = "100%";
         }
 
         if (['XLSX', 'XLS', 'CSV'].includes(fType)) {
-          otherOriginalWrapper.className = "hidden bg-white text-slate-800 rounded-xl shadow-2xl w-fit min-w-full p-4 sm:p-6 h-fit mx-auto orig-doc-view transition-transform duration-150";
+          otherOriginalWrapper.className = "hidden bg-white text-slate-800 rounded-lg sm:rounded-xl shadow-2xl w-fit min-w-full p-3 sm:p-6 h-fit mx-auto orig-doc-view transition-transform duration-150";
         } else {
-          otherOriginalWrapper.className = "hidden bg-white text-slate-800 rounded-xl shadow-2xl max-w-5xl w-full p-6 sm:p-8 h-fit mx-auto orig-doc-view transition-transform duration-150";
+          otherOriginalWrapper.className = "hidden bg-white text-slate-800 rounded-lg sm:rounded-xl shadow-2xl max-w-5xl w-full p-4 sm:p-8 h-fit mx-auto orig-doc-view transition-transform duration-150";
         }
 
         if (fType === 'PDF' && pdfDocumentCache.has(cacheKey)) {
           activePdfInstance = pdfDocumentCache.get(cacheKey);
-          document.getElementById('pdfTotalPages').textContent = `/ ${activePdfInstance.numPages}`;
+          activePdfScale = await computeOptimalInitialPdfScale(activePdfInstance, 0);
           viewerLoading.classList.add('hidden');
           pdfCanvasWrapper.classList.remove('hidden');
           pdfCanvasWrapper.classList.add('flex');
@@ -2966,8 +2987,7 @@
           viewerLoading.classList.add('hidden');
           rawTextWrapper.classList.remove('hidden');
           isRawTextMode = true;
-          pdfPageNavGroup.classList.add('hidden');
-          switchModeBtn.textContent = `Đang xem văn bản Trang ${targetPageNum}`;
+          switchModeBtn.textContent = `Trang ${targetPageNum}`;
           scrollToRawPageAnchor(targetPageNum);
           return;
         }
@@ -2978,7 +2998,7 @@
           activePdfInstance = await pdfjsLib.getDocument({ data: pdfBytesCopy }).promise;
           pdfDocumentCache.set(cacheKey, activePdfInstance);
 
-          document.getElementById('pdfTotalPages').textContent = `/ ${activePdfInstance.numPages}`;
+          activePdfScale = await computeOptimalInitialPdfScale(activePdfInstance, 0);
           viewerLoading.classList.add('hidden');
           pdfCanvasWrapper.classList.remove('hidden');
           pdfCanvasWrapper.classList.add('flex');
@@ -3003,7 +3023,7 @@
           let html = "";
           workbook.SheetNames.forEach(sName => {
             const tableHtml = XLSX.utils.sheet_to_html(workbook.Sheets[sName]);
-            html += `<div class="mb-8"><h4 class="font-bold text-sm bg-slate-800 text-white px-3.5 py-2 rounded-t">Sheet: ${escapeHtml(sName)}</h4>${tableHtml}</div>`;
+            html += `<div class="mb-8"><h4 class="font-bold text-xs sm:text-sm bg-slate-800 text-white px-3.5 py-2 rounded-t">Sheet: ${escapeHtml(sName)}</h4>${tableHtml}</div>`;
           });
           otherOriginalWrapper.innerHTML = html;
           highlightDomElementNodes(otherOriginalWrapper, activeKw1, activeKw2);
@@ -3085,7 +3105,7 @@
       bar.classList.remove('hidden');
       list.innerHTML = Array.from(activeMatchedPageSet).sort((a, b) => a - b).map(pNum => `
         <button type="button" data-page="${pNum}" onclick="window.goToPdfPage(${pNum})"
-                class="page-chip-btn ${pNum === activePage ? 'bg-amber-400 text-slate-950 font-extrabold' : 'bg-slate-800 text-slate-200 border border-slate-700'} px-2.5 py-0.5 rounded text-xs transition shrink-0 cursor-pointer">
+                class="page-chip-btn ${pNum === activePage ? 'bg-amber-400 text-slate-950 font-extrabold' : 'bg-slate-800 text-slate-200 border border-slate-700'} px-2 sm:px-2.5 py-0.5 rounded text-[11px] sm:text-xs transition shrink-0 cursor-pointer">
           Trang ${pNum}
         </button>
       `).join('');
@@ -3120,10 +3140,6 @@
         }
       }, 100);
     }
-
-    window.changePdfPage = (delta) => {
-      if (activePdfInstance) window.goToPdfPage(activePdfPage + delta);
-    };
 
     window.goToPdfPage = async (val) => {
       const p = parseInt(val, 10);
@@ -3169,7 +3185,7 @@
         pdfCanvasWrapper.classList.remove('flex');
         otherOriginalWrapper.classList.add('hidden');
         rawTextWrapper.classList.remove('hidden');
-        switchBtn.textContent = "Quay lại xem Trang Gốc";
+        switchBtn.textContent = "Trang Gốc";
         document.getElementById('pdfZoomLabel').textContent = `${Math.round(activeDocZoom * 100)}%`;
         scrollToRawPageAnchor(activePdfPage);
       } else {
@@ -3184,7 +3200,7 @@
           otherOriginalWrapper.classList.remove('hidden');
           document.getElementById('pdfZoomLabel').textContent = `${Math.round(activeDocZoom * 100)}%`;
         }
-        switchBtn.textContent = "Chế độ Văn bản";
+        switchBtn.textContent = "Văn bản";
       }
     };
 
